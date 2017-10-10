@@ -1,3 +1,17 @@
+/***************************************************************
+ * file: HighScore.java
+ * author: Team FTP
+ * class: CS 245 - Programming Graphical User Interfaces
+ *
+ * assignment: Hangman
+ * date last modified: 10/9/17
+ *
+ * purpose: This class is the high score class that displays a highscore
+ * GUI that will be fully functional in the future (for the next project).
+ *
+ ****************************************************************/
+
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -7,10 +21,11 @@ import java.awt.event.ActionListener;
 public class HighScore extends JPanel implements ActionListener{
 
     private JLabel[] highScoreArray = new JLabel[5]; //array of high scores where index 0 is highest.
-    private JButton backButton = new JButton("Back");
+    private JButton backButton = new JButton("Back"); //back button
     private Game game;
 
 
+    //Constructor, pass in game for reference.
     public HighScore(Game game){
         this.game = game;
         //initialize new Labels into array.
@@ -45,13 +60,18 @@ public class HighScore extends JPanel implements ActionListener{
             highScoreArray[i].setFont(new Font("Arial", Font.BOLD, 16));
         }
 
+        //listen for click
         backButton.addActionListener(this);
+
+        //create whitespace between back button and high scores.
+        c1.add(Box.createRigidArea(new Dimension(0,40)));
         c1.add(backButton);
 
         //add the container into the panel.
         this.add(c1);
     }
 
+    //override method that allows the user to back into the menu.
     @Override
     public void actionPerformed(ActionEvent e) {
         Object o = e.getSource();
@@ -72,9 +92,4 @@ public class HighScore extends JPanel implements ActionListener{
         }
     }
 
-    public void updateHighScore(int score){
-        for (int i = 0;i<highScoreArray.length;i++){
-
-        }
-    }
 }

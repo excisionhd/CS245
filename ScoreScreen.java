@@ -17,6 +17,7 @@ public class ScoreScreen extends JPanel implements ActionListener
         backButton.addActionListener(this);
         this.game = game;
         this.score = score;
+
         //Create a new container
         Container container = new Container();
 
