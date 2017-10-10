@@ -241,9 +241,6 @@ public class Hangman extends JPanel implements ActionListener{
 
             }
 
-
-            boolean end = true;
-
             boolean end = true; //checks if all spaces have been filled or enough mistakes have been made to end
 
             for (int i = 0; i < guessed.length; i++)
