@@ -8,9 +8,11 @@ public class HighScore extends JPanel implements ActionListener{
 
     private JLabel[] highScoreArray = new JLabel[5]; //array of high scores where index 0 is highest.
     private JButton backButton = new JButton("Back");
+    private Game game;
 
 
-    public HighScore(){
+    public HighScore(Game game){
+        this.game = game;
         //initialize new Labels into array.
         for(int i = 0;i<highScoreArray.length;i++){
             highScoreArray[i] = new JLabel("ABC.....000000");
@@ -43,6 +45,7 @@ public class HighScore extends JPanel implements ActionListener{
             highScoreArray[i].setFont(new Font("Arial", Font.BOLD, 16));
         }
 
+        backButton.addActionListener(this);
         c1.add(backButton);
 
         //add the container into the panel.
@@ -61,7 +64,10 @@ public class HighScore extends JPanel implements ActionListener{
 
         if(b!=null){
             if(b.getText().equalsIgnoreCase("back")){
-
+                game.frame.getContentPane().setVisible(false);
+                game.frame.getContentPane().remove(this);
+                game.frame.add(new Menu(game));
+                game.frame.getContentPane().setVisible(true);
             }
         }
     }

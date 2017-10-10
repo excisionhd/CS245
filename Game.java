@@ -9,9 +9,9 @@ public class Game {
 
     JFrame frame = new JFrame("CS245 Project");
     MyPanel intro = new MyPanel();
-    Credits credits = new Credits();
+    Credits credits = new Credits(this);
     Menu menu;
-    HighScore hs = new HighScore();
+    HighScore hs = new HighScore(this);
 
     public enum STATE{
         Intro,
@@ -54,16 +54,8 @@ public class Game {
 
 
 
-        //Hangman h = new Hangman();
-        //frame.add(h);
-
-
     }
 
-    public void changeToCredits(){
-
-        frame.add(credits);
-    }
 
 
     public static void main(String[] args) {
