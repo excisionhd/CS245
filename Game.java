@@ -7,11 +7,13 @@ public class Game {
     final int FINAL_WIDTH = 600;
     final int FINAL_HEIGHT = 400;
 
-    JFrame frame = new JFrame("CS245 Project");
-    MyPanel intro = new MyPanel();
-    Credits credits = new Credits(this);
+    JFrame frame;
+    MyPanel intro;
+    Credits credits;
     Menu menu;
-    HighScore hs = new HighScore(this);
+    HighScore hs;
+    ScoreScreen ss;
+    Hangman hg;
 
     public enum STATE{
         Intro,
@@ -24,7 +26,13 @@ public class Game {
     public static STATE gameState = STATE.Intro;
 
     public Game(){
+        frame = new JFrame("CS245 Project");
+        intro = new MyPanel();
+        hs = new HighScore(this);
+        hg = new Hangman(this);
         menu = new Menu(this);
+        credits = new Credits(this);
+
         frame.setPreferredSize(new Dimension(600, 400));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);

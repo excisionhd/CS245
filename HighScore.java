@@ -71,4 +71,10 @@ public class HighScore extends JPanel implements ActionListener{
             }
         }
     }
+
+    public void updateHighScore(int score){
+        for (int i = 0;i<highScoreArray.length;i++){
+
+        }
+    }
 }
