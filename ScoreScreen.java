@@ -4,35 +4,32 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 
-public class Credits extends JPanel implements ActionListener
+public class ScoreScreen extends JPanel implements ActionListener
 {
 
     private Game game;
     private JButton backButton;
+    private int score;
 
-    public Credits(Game game)
+    public ScoreScreen(Game game, int score)
     {
-        backButton = new JButton("Back");
+        backButton = new JButton("End");
         backButton.addActionListener(this);
         this.game = game;
+        this.score = score;
         //Create a new container
         Container container = new Container();
 
-        //Makes the container a box so that the credits will appear starting from the top going down
         container.setLayout(new BoxLayout(container, BoxLayout.PAGE_AXIS));
-
-        //Moves the next label down so it is not close to te top of the window
         container.add(Box.createRigidArea(new Dimension(0, 50)));
         //Create the title and add it to the box container
-        container.add(new JLabel("Credits"));
+        container.add(new JLabel("Game Over"));
 
         //Moves the next label a little bit down below the "Credits" label
         container.add(Box.createRigidArea(new Dimension(0, 40)));
 
         //List of programmers responsible for this application
-        container.add(new JLabel("Jason Kaufman: 012134941"));
-        container.add(new JLabel("Amir Sotoodeh: 012165218"));
-        container.add(new JLabel("Jacob Young: 010224552"));
+        container.add(new JLabel("Your score is "+score));
         container.add(backButton);
 
         //Adds the container to the panel
@@ -50,7 +47,7 @@ public class Credits extends JPanel implements ActionListener
         }
 
         if(b!=null){
-            if(b.getText().equalsIgnoreCase("back")){
+            if(b.getText().equalsIgnoreCase("end")){
                 game.frame.getContentPane().setVisible(false);
                 game.frame.getContentPane().remove(this);
                 game.frame.add(new Menu(game));
