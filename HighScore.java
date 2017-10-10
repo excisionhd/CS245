@@ -1,12 +1,13 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-/**
- * Created by Apex on 10/8/17.
- */
-public class HighScore extends JPanel {
+
+public class HighScore extends JPanel implements ActionListener{
 
     private JLabel[] highScoreArray = new JLabel[5]; //array of high scores where index 0 is highest.
+    private JButton backButton = new JButton("Back");
 
 
     public HighScore(){
@@ -42,7 +43,26 @@ public class HighScore extends JPanel {
             highScoreArray[i].setFont(new Font("Arial", Font.BOLD, 16));
         }
 
+        c1.add(backButton);
+
         //add the container into the panel.
         this.add(c1);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        Object o = e.getSource();
+        JButton b = null;
+        String buttonText = "";
+
+        if(o instanceof JButton) {
+            b = (JButton) o;
+        }
+
+        if(b!=null){
+            if(b.getText().equalsIgnoreCase("back")){
+
+            }
+        }
     }
 }
