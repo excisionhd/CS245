@@ -19,14 +19,18 @@ public class Hangman extends JPanel implements ActionListener{
     private JLabel clockLabel;
     private Random r = new Random();
     private String[] words = {"abstract","cemetery","nurse","pharmacy","climbing"};
+    private boolean[] guessed;
     private String word;
     private String choice;
     private int score=100;
     private int mistakes =0;
+    private Game game;
 
-    public Hangman(){
+    public Hangman(Game game){
+        this.game = game;
         int randomNumber = r.nextInt(4+1);
         word = words[randomNumber];
+        guessed = new boolean[words.length];
         loadGUI();
         clock();
 
@@ -153,7 +157,10 @@ public class Hangman extends JPanel implements ActionListener{
             setChoice(b.getText().toLowerCase());
 
             if (choice.equals("skip")){
-                System.exit(0);
+                game.frame.getContentPane().setVisible(false);
+                game.frame.getContentPane().remove(this);
+                game.frame.add(game.hs);
+                game.frame.getContentPane().setVisible(true);
             }
 
             if(mistakes == 0 && !word.contains(getChoice()))
@@ -212,10 +219,23 @@ public class Hangman extends JPanel implements ActionListener{
                 for(int i =0;i<word.length();i++){
                     if(b.getText().toLowerCase().charAt(0) == word.charAt(i)){
                         underscoresLabel[i].setText(b.getText());
+                        guessed[i] = true;
                     }
                 }
                 b.setVisible(false);
 
+            }
+            private boolean end = true;
+            for (int i = 0; i < guessed.length; i++)
+            {
+                if (!guessed[i])
+                    end = false;
+            }
+            if(mistakes ==6 || end){
+                game.frame.getContentPane().setVisible(false);
+                game.frame.getContentPane().remove(this);
+                game.frame.add(new ScoreScreen(game,score));
+                game.frame.getContentPane().setVisible(true);
             }
 
 
@@ -228,5 +248,9 @@ public class Hangman extends JPanel implements ActionListener{
 
     public String getChoice(){
         return choice;
+    }
+
+    public int getScore(){
+        return score;
     }
 }
