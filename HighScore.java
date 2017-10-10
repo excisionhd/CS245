@@ -46,6 +46,7 @@ public class HighScore extends JPanel implements ActionListener{
         }
 
         backButton.addActionListener(this);
+        c1.add(Box.createRigidArea(new Dimension(0,40)));
         c1.add(backButton);
 
         //add the container into the panel.

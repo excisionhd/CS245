@@ -8,6 +8,7 @@ public class Menu extends JPanel implements ActionListener{
     private JButton playButton = new JButton("Play");
     private JButton highScoreButton = new JButton("Highscores");
     private JButton creditsButton = new JButton("Credits");
+    private JLabel hangmanLabel = new JLabel("Hangman");
     private Game game;
     private HighScore hs;
 
@@ -18,9 +19,18 @@ public class Menu extends JPanel implements ActionListener{
         playButton.addActionListener(this);
         highScoreButton.addActionListener(this);
         creditsButton.addActionListener(this);
-        add(playButton);
-        add(highScoreButton);
-        add(creditsButton);
+
+        Container c = new Container();
+        hangmanLabel.setFont(new Font("Impact", Font.BOLD, 64));
+        c.add(hangmanLabel);
+
+        c.setLayout(new BoxLayout(c, BoxLayout.PAGE_AXIS));
+        c.add(Box.createRigidArea(new Dimension(0, 150)));
+        c.add(playButton);
+        c.add(highScoreButton);
+        c.add(creditsButton);
+
+        add(c);
     }
 
     @Override
