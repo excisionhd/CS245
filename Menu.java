@@ -1,3 +1,16 @@
+/**
+ *  file: Menu.java
+ *  author: Team FTP
+ *  class: CS 245 - Programming Graphical User Interfaces
+ * 
+ *  assignment: Swing Project v1.0
+ *  date last modified: 10/9/17
+ * 
+ *  purpose: This class displays the menu to the user after the
+ *  introduction screen has displayed for 3 seconds
+ */
+//package swingv1.pkg0;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -5,34 +18,30 @@ import java.awt.event.ActionListener;
 
 public class Menu extends JPanel implements ActionListener{
 
-    private JButton playButton = new JButton("Play");
-    private JButton highScoreButton = new JButton("Highscores");
-    private JButton creditsButton = new JButton("Credits");
-    private JLabel hangmanLabel = new JLabel("Hangman");
+    //Private variables for the buttons
+    private JButton playButton;
+    private JButton highScoreButton;
+    private JButton creditsButton;
     private Game game;
     private HighScore hs;
 
     String choice = "";
 
+    //Constructor that initializes buttons and creates listeners for the buttons
     public Menu(Game game){
         this.game = game;
+        playButton = new JButton("Play");
+        highScoreButton = new JButton("Highscores");
+        creditsButton = new JButton("Credits");
         playButton.addActionListener(this);
         highScoreButton.addActionListener(this);
         creditsButton.addActionListener(this);
-
-        Container c = new Container();
-        hangmanLabel.setFont(new Font("Impact", Font.BOLD, 64));
-        c.add(hangmanLabel);
-
-        c.setLayout(new BoxLayout(c, BoxLayout.PAGE_AXIS));
-        c.add(Box.createRigidArea(new Dimension(0, 150)));
-        c.add(playButton);
-        c.add(highScoreButton);
-        c.add(creditsButton);
-
-        add(c);
+        add(playButton);
+        add(highScoreButton);
+        add(creditsButton);
     }
 
+    //Method to wait for actions
     @Override
     public void actionPerformed(ActionEvent e) {
         Object o = e.getSource();
@@ -44,6 +53,7 @@ public class Menu extends JPanel implements ActionListener{
         }
 
         if(b!=null){
+            //If "play" is pressed, begin Hangman
             if(b.getText().equalsIgnoreCase("play")){
 
                 game.frame.getContentPane().setVisible(false);
@@ -51,12 +61,14 @@ public class Menu extends JPanel implements ActionListener{
                 game.frame.add(new Hangman(game));
                 game.frame.getContentPane().setVisible(true);
             }
+            //If "highscores" is pressed, display highscores
             if(b.getText().equalsIgnoreCase("highscores")){
                 game.frame.getContentPane().setVisible(false);
                 game.frame.getContentPane().remove(this);
                 game.frame.add(game.hs);
                 game.frame.getContentPane().setVisible(true);
             }
+            //If "credits" is pressed, display credits
             if(b.getText().equalsIgnoreCase("credits")){
                 game.frame.getContentPane().setVisible(false);
                 game.frame.getContentPane().remove(this);
