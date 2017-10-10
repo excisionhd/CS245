@@ -43,13 +43,13 @@ public class Menu extends JPanel implements ActionListener{
             if(b.getText().equalsIgnoreCase("highscores")){
                 game.frame.getContentPane().setVisible(false);
                 game.frame.getContentPane().remove(this);
-                game.frame.add(new HighScore());
+                game.frame.add(new HighScore(game));
                 game.frame.getContentPane().setVisible(true);
             }
             if(b.getText().equalsIgnoreCase("credits")){
                 game.frame.getContentPane().setVisible(false);
                 game.frame.getContentPane().remove(this);
-                game.frame.add(new Credits());
+                game.frame.add(new Credits(game));
                 game.frame.getContentPane().setVisible(true);
             }
         }

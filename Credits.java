@@ -1,12 +1,20 @@
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 
 
-public class Credits extends JPanel
+public class Credits extends JPanel implements ActionListener
 {
 
-    public Credits()
+    private Game game;
+    private JButton backButton;
+
+    public Credits(Game game)
     {
+        backButton = new JButton("Back");
+        backButton.addActionListener(this);
+        this.game = game;
         //Create a new container
         Container container = new Container();
 
@@ -25,8 +33,29 @@ public class Credits extends JPanel
         container.add(new JLabel("Jason Kaufman"));
         container.add(new JLabel("Amir Sotoodeh"));
         container.add(new JLabel("Jacob Young"));
+        container.add(backButton);
 
         //Adds the container to the panel
         this.add(container);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        Object o = e.getSource();
+        JButton b = null;
+        String buttonText = "";
+
+        if(o instanceof JButton) {
+            b = (JButton) o;
+        }
+
+        if(b!=null){
+            if(b.getText().equalsIgnoreCase("back")){
+                game.frame.getContentPane().setVisible(false);
+                game.frame.getContentPane().remove(this);
+                game.frame.add(new Menu(game));
+                game.frame.getContentPane().setVisible(true);
+            }
+        }
     }
 }
