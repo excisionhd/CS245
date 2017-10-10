@@ -30,9 +30,9 @@ public class Credits extends JPanel implements ActionListener
         container.add(Box.createRigidArea(new Dimension(0, 40)));
 
         //List of programmers responsible for this application
-        container.add(new JLabel("Jason Kaufman"));
-        container.add(new JLabel("Amir Sotoodeh"));
-        container.add(new JLabel("Jacob Young"));
+        container.add(new JLabel("Jason Kaufman: 012134941"));
+        container.add(new JLabel("Amir Sotoodeh: 012165218"));
+        container.add(new JLabel("Jacob Young: 010224552"));
         container.add(backButton);
 
         //Adds the container to the panel
