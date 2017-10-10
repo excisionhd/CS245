@@ -1,14 +1,13 @@
-
 /***************************************************************
  * file: Hangman.java
  * author: Team FTP
  * class: CS 245
  *
- * assignment: program 1
+ * assignment: Swing Project v1.0
  * date last modified: 10/9/2017
  *
- * purpose: Actual game panel
- *
+ * purpose: GUI for hangman game, consists of the score
+ * and keeps track of the right and wrong guesses.
  ****************************************************************/
 
 
@@ -240,9 +239,6 @@ public class Hangman extends JPanel implements ActionListener{
                 b.setVisible(false);
 
             }
-
-
-            boolean end = true;
 
             boolean end = true; //checks if all spaces have been filled or enough mistakes have been made to end
 

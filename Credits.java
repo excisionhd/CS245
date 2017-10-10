@@ -3,7 +3,7 @@
  * author: Team FTP
  * class: CS 245 - Programming Graphical User Interfaces
  *
- * assignment: Hangman
+ * assignment: Swing Project v1.0
  * date last modified: 10/9/17
  *
  * purpose: This class is the credits GUI that consist of labels

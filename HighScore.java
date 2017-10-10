@@ -3,7 +3,7 @@
  * author: Team FTP
  * class: CS 245 - Programming Graphical User Interfaces
  *
- * assignment: Hangman
+ * assignment: Swing Project v1.0
  * date last modified: 10/9/17
  *
  * purpose: This class is the high score class that displays a highscore
@@ -20,13 +20,15 @@ import java.awt.event.ActionListener;
 
 public class HighScore extends JPanel implements ActionListener{
 
-    private JLabel[] highScoreArray = new JLabel[5]; //array of high scores where index 0 is highest.
-    private JButton backButton = new JButton("Back"); //back button
+    private JLabel[] highScoreArray;
+    private JButton backButton;
     private Game game;
 
 
     //Constructor, pass in game for reference.
     public HighScore(Game game){
+        highScoreArray = new JLabel[5]; //array of high scores where index 0 is highest.
+        backButton = new JButton("Back"); //back button
         this.game = game;
         //initialize new Labels into array.
         for(int i = 0;i<highScoreArray.length;i++){

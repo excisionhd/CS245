@@ -3,43 +3,27 @@
  * author: Team FTP
  * class: CS 245
  *
- * assignment: program 1
+ * assignment: Swing Project v1.0
  * date last modified: 10/9/2017
  *
- * purpose: Intro page
- *
+ * purpose: Intro screen that displays the project and
+ * team name.
  ****************************************************************/
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 
 class MyPanel extends JPanel {
 
-    private int rectX = this.getWidth()/2;
-    private int rectY = this.getHeight()/2;
-    private int rectW = 32;
-    private int rectH = 32;
+    private Game game;
 
-    public MyPanel() {
+    //default constructor
+    public MyPanel(Game game) {
+        this.game = game;
 
-
+        //create a border
         setBorder(BorderFactory.createLineBorder(Color.black));
-
-        addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-                moveSquare(e.getX(),e.getY());
-            }
-        });
-        addMouseMotionListener(new MouseAdapter() {
-            @Override
-            public void mouseDragged(MouseEvent e) {
-                moveSquare(e.getX(),e.getY());
-            }
-        });
 
     }
 
@@ -48,6 +32,7 @@ class MyPanel extends JPanel {
     }
 
     public void paintComponent(Graphics g) {
+
         super.paintComponent(g);
         Font f = new Font("Arial", Font.BOLD, 32); //creates font for title
         Font f2 = new Font("Arial", Font.BOLD, 16);
@@ -58,21 +43,8 @@ class MyPanel extends JPanel {
         g2.setFont(f2);
         g2.drawString("By Team FTP",this.getWidth()-350,this.getHeight()-32);
 
-        g.setColor(Color.blue);
-        g.fillRect(rectX,rectY,rectW,rectH);
 
 
-    }
-
-    public void moveSquare(int x, int y){ //move square if mouse clicks
-        int OFFSET = 1;
-
-        if (rectX != x || rectY != y){
-            repaint(rectX,rectY,rectW+OFFSET,rectH + OFFSET);
-            rectX = x;
-            rectY = y;
-            repaint(rectX,rectY,rectW+OFFSET,rectH + OFFSET);
-        }
     }
 
 }
