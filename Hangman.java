@@ -30,7 +30,7 @@ public class Hangman extends JPanel implements ActionListener{
         this.game = game;
         int randomNumber = r.nextInt(4+1);
         word = words[randomNumber];
-        guessed = new boolean[words.length];
+        guessed = new boolean[word.length()];
         loadGUI();
         clock();
 
@@ -225,7 +225,7 @@ public class Hangman extends JPanel implements ActionListener{
                 b.setVisible(false);
 
             }
-            private boolean end = true;
+            boolean end = true;
             for (int i = 0; i < guessed.length; i++)
             {
                 if (!guessed[i])
