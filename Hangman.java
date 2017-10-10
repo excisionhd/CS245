@@ -225,6 +225,18 @@ public class Hangman extends JPanel implements ActionListener{
                 b.setVisible(false);
 
             }
+            private boolean end = true;
+            for (int i = 0; i < guessed.length; i++)
+            {
+                if (!guessed[i])
+                    end = false;
+            }
+            if(mistakes ==6 || end){
+                game.frame.getContentPane().setVisible(false);
+                game.frame.getContentPane().remove(this);
+                game.frame.add(new ScoreScreen(game,score));
+                game.frame.getContentPane().setVisible(true);
+            }
 
             if(mistakes ==6){
                 game.frame.getContentPane().setVisible(false);
