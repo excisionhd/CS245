@@ -1,19 +1,33 @@
+/***************************************************************
+ * file: Game.java
+ * author: Team FTP
+ * class: CS 245
+ *
+ * assignment: program 1
+ * date last modified: 10/9/2017
+ *
+ * purpose: This is the main method which ties all other panels into one frame
+ *
+ ****************************************************************/
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.concurrent.TimeUnit;
 
 public class Game {
 
-    final int FINAL_WIDTH = 600;
+    final int FINAL_WIDTH = 600; //frame dimensions
     final int FINAL_HEIGHT = 400;
 
-    JFrame frame = new JFrame("CS245 Project");
-    MyPanel intro = new MyPanel();
-    Credits credits = new Credits(this);
+    JFrame frame;
+    MyPanel intro;
+    Credits credits;
     Menu menu;
-    HighScore hs = new HighScore(this);
+    HighScore hs;
+    ScoreScreen ss;
+    Hangman hg;
 
-    public enum STATE{
+    public enum STATE{ //allows access to each panel
         Intro,
         Menu,
         HighScore,
@@ -21,10 +35,16 @@ public class Game {
         Game,
     }
 
-    public static STATE gameState = STATE.Intro;
+    public static STATE gameState = STATE.Intro; //starts game in intro
 
-    public Game(){
+    public Game(){ //initializes each panel upon creating the frame
+        frame = new JFrame("CS245 Project");
+        intro = new MyPanel();
+        hs = new HighScore(this);
+        hg = new Hangman(this);
         menu = new Menu(this);
+        credits = new Credits(this);
+
         frame.setPreferredSize(new Dimension(600, 400));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
@@ -33,10 +53,10 @@ public class Game {
         frame.add(intro);
         frame.setVisible(true);
 
-        if(gameState == STATE.Intro) {
+        if(gameState == STATE.Intro) { //create game state with intro screen
 
             try {
-                TimeUnit.SECONDS.sleep(1);
+                TimeUnit.SECONDS.sleep(3); //hold title for 3 second
             }
             catch(InterruptedException e){
                 e.printStackTrace();
@@ -60,5 +80,5 @@ public class Game {
 
     public static void main(String[] args) {
         new Game();
-    }
+    } //run game
 }

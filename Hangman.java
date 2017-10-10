@@ -1,3 +1,14 @@
+/***************************************************************
+ * file: Hangman.java
+ * author: Team FTP
+ * class: CS 245
+ *
+ * assignment: program 1
+ * date last modified: 10/9/2017
+ *
+ * purpose: Actual game panel
+ *
+ ****************************************************************/
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,6 +22,8 @@ import java.util.Random;
 public class Hangman extends JPanel implements ActionListener{
 
     private static final long serialVersionUID = -3872551417773200878L;
+
+    //declares all variables used
 
     private JButton[] buttons;
     private JButton skipButton;
@@ -37,7 +50,7 @@ public class Hangman extends JPanel implements ActionListener{
 
     }
 
-    public void clock(){
+    public void clock(){ //clock that runs throughout program
         Thread clock = new Thread(){
             public void run(){
                 try{
@@ -62,7 +75,7 @@ public class Hangman extends JPanel implements ActionListener{
         clock.start();
     }
 
-    public void loadGUI(){
+    public void loadGUI(){ //draws the screen with each underscore and hangman diagram
 
         int ascii = 65;
         underscoresLabel = new JLabel[word.length()];
@@ -153,7 +166,7 @@ public class Hangman extends JPanel implements ActionListener{
             b = (JButton) o;
         }
 
-        if( b!=null){
+        if( b!=null){ //allows access to the button variable and can determine what action to take
             setChoice(b.getText().toLowerCase());
 
             if (choice.equals("skip")){
@@ -225,7 +238,7 @@ public class Hangman extends JPanel implements ActionListener{
                 b.setVisible(false);
 
             }
-            boolean end = true;
+            boolean end = true; //checks if all spaces have been filled or enough mistakes have been made to end
             for (int i = 0; i < guessed.length; i++)
             {
                 if (!guessed[i])
@@ -237,15 +250,6 @@ public class Hangman extends JPanel implements ActionListener{
                 game.frame.add(new ScoreScreen(game,score));
                 game.frame.getContentPane().setVisible(true);
             }
-
-            if(mistakes ==6){
-                game.frame.getContentPane().setVisible(false);
-                game.frame.getContentPane().remove(this);
-                game.frame.add(new ScoreScreen(game,score));
-                game.frame.getContentPane().setVisible(true);
-            }
-
-
         }
     }
 
