@@ -12,7 +12,10 @@ class MyPanel extends JPanel {
     private int rectH = 32;
 
     public MyPanel() {
+
+
         setBorder(BorderFactory.createLineBorder(Color.black));
+
         addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -25,6 +28,7 @@ class MyPanel extends JPanel {
                 moveSquare(e.getX(),e.getY());
             }
         });
+
     }
 
     public Dimension getPreferredSize() {
@@ -58,6 +62,5 @@ class MyPanel extends JPanel {
             repaint(rectX,rectY,rectW+OFFSET,rectH + OFFSET);
         }
     }
-
 
 }
