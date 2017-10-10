@@ -4,10 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.Random;
 
 
 public class Hangman extends JPanel implements ActionListener{
@@ -15,23 +14,22 @@ public class Hangman extends JPanel implements ActionListener{
     private static final long serialVersionUID = -3872551417773200878L;
 
     private JButton[] buttons;
+    private JButton skipButton;
+    private JLabel[] underscoresLabel;
     private JLabel scoreLabel;
-    private int score;
-
     private JLabel clockLabel;
-    private int mistakes =0;
-    private JFrame frame;
+    private Random r = new Random();
+    private String[] words = {"abstract","cemetery","nurse","pharmacy","climbing"};
     private String word;
     private String choice;
+    private int score=100;
+    private int mistakes =0;
 
     public Hangman(){
-
-        buttons = new JButton[26];
-        clockLabel = new JLabel("");
-        scoreLabel = new JLabel("Score: ");
+        int randomNumber = r.nextInt(4+1);
+        word = words[randomNumber];
         loadGUI();
         clock();
-        word = "hello";
 
 
     }
@@ -64,18 +62,39 @@ public class Hangman extends JPanel implements ActionListener{
     public void loadGUI(){
 
         int ascii = 65;
+        underscoresLabel = new JLabel[word.length()];
+        buttons = new JButton[26];
+        clockLabel = new JLabel("");
+        scoreLabel = new JLabel("Score: "+score);
+        skipButton = new JButton("Skip");
+        skipButton.addActionListener(this);
 
 
         Container hold = new Container();
+
+
         hold.setLayout(new BoxLayout(hold,BoxLayout.PAGE_AXIS));
         hold.add(clockLabel);
         hold.add(scoreLabel);
-        hold.add(Box.createRigidArea(new Dimension(50,280)));
+        hold.add(Box.createRigidArea(new Dimension(50,220))); //30
+
         Container buttonContainer = new Container();
-        hold.add(buttonContainer);
+        Container wordContainer = new Container();
         buttonContainer.setLayout(new GridLayout(2,13,2,0));
+        wordContainer.setLayout(new GridLayout(1,word.length()));
 
 
+        hold.add(wordContainer);
+        hold.add(Box.createRigidArea(new Dimension(50,20))); //30
+        hold.add(buttonContainer);
+
+
+
+
+        for (int i = 0;i<underscoresLabel.length;i++){
+            underscoresLabel[i] = new JLabel("_");
+            wordContainer.add(underscoresLabel[i]);
+        }
         for(int i = 0;i<buttons.length;i++,ascii++) {
 
             buttons[i] = new JButton(Character.toString((char) ascii));
@@ -87,8 +106,9 @@ public class Hangman extends JPanel implements ActionListener{
 
         }
 
-        add(hold);
 
+        add(hold);
+        add(skipButton);
 
     }
 
@@ -133,21 +153,31 @@ public class Hangman extends JPanel implements ActionListener{
         if( b!=null){
             setChoice(b.getText().toLowerCase());
 
+            if (choice.equals("skip")){
+                System.exit(0);
+            }
+
             if(mistakes == 0 && !word.contains(getChoice()))
             {
                 g2.drawOval(332,100,20,20);
                 mistakes++;
+                score-=10;
+                scoreLabel.setText("Score: "+Integer.toString(score));
                 b.setVisible(false);
             }
             else if (mistakes == 1 && !word.contains(getChoice()))// draw body
             {
                 g2.drawLine(342, 120, 342, 175);
                 mistakes++;
+                score-=10;
+                scoreLabel.setText("Score: "+Integer.toString(score));
                 b.setVisible(false);
             }
             else if (mistakes == 2 && !word.contains(getChoice())) {
                 g2.drawLine(342, 120, 322, 160);
                 mistakes++;
+                score-=10;
+                scoreLabel.setText("Score: "+Integer.toString(score));
                 b.setVisible(false);
             }
 
@@ -155,6 +185,8 @@ public class Hangman extends JPanel implements ActionListener{
             {
                 g2.drawLine(342, 120, 362, 160);
                 mistakes++;
+                score-=10;
+                scoreLabel.setText("Score: "+Integer.toString(score));
                 b.setVisible(false);
             }
 
@@ -162,6 +194,8 @@ public class Hangman extends JPanel implements ActionListener{
             {
                 g2.drawLine(342, 175, 330, 220);
                 mistakes++;
+                score-=10;
+                scoreLabel.setText("Score: "+Integer.toString(score));
                 b.setVisible(false);
             }
 
@@ -169,17 +203,24 @@ public class Hangman extends JPanel implements ActionListener{
             {
                 g2.drawLine(342, 175, 353, 220);
                 mistakes++;
+                score-=10;
+                scoreLabel.setText("Score: "+Integer.toString(score));
                 b.setVisible(false);
             }
 
             else if (mistakes <6 && word.contains(getChoice())){
-                score+=100;
-                scoreLabel.setText("Score: "+Integer.toString(score));
+
+                for(int i =0;i<word.length();i++){
+                    if(b.getText().toLowerCase().charAt(0) == word.charAt(i)){
+                        underscoresLabel[i].setText(b.getText());
+                    }
+                }
                 b.setVisible(false);
 
             }
 
-            }
+
+        }
     }
 
     public void setChoice(String s){
