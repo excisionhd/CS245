@@ -14,6 +14,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class Menu extends JPanel implements ActionListener{
 
@@ -87,7 +88,12 @@ public class Menu extends JPanel implements ActionListener{
             if(b.getText().equalsIgnoreCase("highscores")){
                 game.frame.getContentPane().setVisible(false);
                 game.frame.getContentPane().remove(this);
-                game.frame.add(game.hs);
+                try {
+                    game.frame.add(new HighScore(game));
+                }
+                catch(IOException err){
+                    err.getMessage();
+                }
                 game.frame.getContentPane().setVisible(true);
             }
             //If "credits" is pressed, display credits
