@@ -1,14 +1,13 @@
-
 /***************************************************************
  * file: Hangman.java
  * author: Team FTP
  * class: CS 245
  *
- * assignment: program 1
+ * assignment: Swing Project v1.0
  * date last modified: 10/9/2017
  *
- * purpose: Actual game panel
- *
+ * purpose: GUI for hangman game, consists of the score
+ * and keeps track of the right and wrong guesses.
  ****************************************************************/
 
 
@@ -43,13 +42,11 @@ public class Hangman extends JPanel implements ActionListener{
 
     public Hangman(Game game){
         this.game = game;
-        int randomNumber = r.nextInt(4+1);
+        int randomNumber = r.nextInt(words.length);
         word = words[randomNumber];
         guessed = new boolean[word.length()];
         loadGUI();
         clock();
-
-
     }
 
     public void clock(){ //clock that runs throughout program
@@ -172,9 +169,10 @@ public class Hangman extends JPanel implements ActionListener{
             setChoice(b.getText().toLowerCase());
 
             if (choice.equals("skip")){
+                setScore(0);
                 game.frame.getContentPane().setVisible(false);
                 game.frame.getContentPane().remove(this);
-                game.frame.add(new ScoreScreen(game,0));
+                game.frame.add(new ButtonGame(game,score));
                 game.frame.getContentPane().setVisible(true);
             }
 
@@ -252,14 +250,16 @@ public class Hangman extends JPanel implements ActionListener{
 
                 game.frame.getContentPane().setVisible(false);
                 game.frame.getContentPane().remove(this);
-                game.frame.add(new ScoreScreen(game,score));
+                game.frame.add(new ButtonGame(game,score));
+                //game.frame.add(new ScoreScreen(game,score));
                 game.frame.getContentPane().setVisible(true);
             }
 
             if(mistakes ==6){
                 game.frame.getContentPane().setVisible(false);
                 game.frame.getContentPane().remove(this);
-                game.frame.add(new ScoreScreen(game,score));
+                game.frame.add(new ButtonGame(game,score));
+                //game.frame.add(new ScoreScreen(game,score));
                 game.frame.getContentPane().setVisible(true);
             }
         }
@@ -276,4 +276,10 @@ public class Hangman extends JPanel implements ActionListener{
     public int getScore(){
         return score;
     }
+
+    public void setScore(int s){
+        score = s;
+    }
+}
+
 }

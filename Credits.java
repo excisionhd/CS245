@@ -3,7 +3,7 @@
  * author: Team FTP
  * class: CS 245 - Programming Graphical User Interfaces
  *
- * assignment: Hangman
+ * assignment: Swing Project v1.0
  * date last modified: 10/9/17
  *
  * purpose: This class is the credits GUI that consist of labels
@@ -40,18 +40,6 @@ public class Credits extends JPanel implements ActionListener
 
         //Moves the next label down so it is not close to te top of the window
         container.add(Box.createRigidArea(new Dimension(0, 50)));
-        //Create the title and add it to the box container
-        container.add(new JLabel("Credits"));
-
-        //Moves the next label a little bit down below the "Credits" label
-        container.add(Box.createRigidArea(new Dimension(0, 40)));
-
-        //List of programmers responsible for this application
-        container.add(new JLabel("Jason Kaufman: 012134941"));
-        container.add(new JLabel("Amir Sotoodeh: 012165218"));
-        container.add(new JLabel("Jacob Young: 010224552"));
-        container.add(Box.createRigidArea(new Dimension(0, 50)));
-        container.add(backButton);
 
         //Adds the container to the panel
         this.add(container);

@@ -2,6 +2,14 @@
  *  file: ScoreScreen.java
  *  author: Team FTP
  *  class: CS 245 - Programming Graphical User Interfaces
+
+ *
+ *  assignment: Swing Project v1.0
+ *  date last modified: 10/9/17
+ *
+ *  purpose: This class displays the score screen after the game of Hangman
+ */
+
  * 
  *  assignment: Swing Project v1.0
  *  date last modified: 10/9/17
@@ -42,7 +50,8 @@ public class ScoreScreen extends JPanel implements ActionListener
         container.add(Box.createRigidArea(new Dimension(0, 40)));
 
         //List of programmers responsible for this application
-        container.add(new JLabel("Your score is "+score));
+        container.add(new JLabel("Your score is "+score+"."));
+        container.add(Box.createRigidArea(new Dimension(0, 40)));
         container.add(backButton);
 
         //Adds the container to the panel
@@ -69,4 +78,5 @@ public class ScoreScreen extends JPanel implements ActionListener
             }
         }
     }
+
 }

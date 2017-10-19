@@ -2,6 +2,15 @@
  *  file: Menu.java
  *  author: Team FTP
  *  class: CS 245 - Programming Graphical User Interfaces
+
+ *
+ *  assignment: Swing Project v1.0
+ *  date last modified: 10/9/17
+ *
+ *  purpose: This class displays the menu to the user after the
+ *  introduction screen has displayed for 3 seconds.
+ */
+
  * 
  *  assignment: Swing Project v1.0
  *  date last modified: 10/9/17
@@ -10,6 +19,7 @@
  *  introduction screen has displayed for 3 seconds
  */
 //package swingv1.pkg0;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,6 +32,9 @@ public class Menu extends JPanel implements ActionListener{
     private JButton playButton;
     private JButton highScoreButton;
     private JButton creditsButton;
+
+    private JLabel hangmanLabel;
+
     private Game game;
     private HighScore hs;
 
@@ -30,9 +43,16 @@ public class Menu extends JPanel implements ActionListener{
     //Constructor that initializes buttons and creates listeners for the buttons
     public Menu(Game game){
         this.game = game;
+
+        highScoreButton = new JButton("Highscores");
+        playButton = new JButton("Play");
+        creditsButton = new JButton("Credits");
+        hangmanLabel = new JLabel("Hangman");
+
         playButton = new JButton("Play");
         highScoreButton = new JButton("Highscores");
         creditsButton = new JButton("Credits");
+
         playButton.addActionListener(this);
         highScoreButton.addActionListener(this);
         creditsButton.addActionListener(this);
