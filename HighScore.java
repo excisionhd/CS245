@@ -16,7 +16,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
 import java.io.FileNotFoundException;
+
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileWriter;
@@ -63,6 +65,32 @@ public class HighScore extends JPanel implements ActionListener
         catch(FileNotFoundException e){
             e.getMessage();
         }
+
+        if (!inputFile.exists())
+        {
+            inputFile.createNewFile();
+
+            FileWriter fW = new FileWriter(inputFile);
+
+            for (int i = 0; i < highScoreArray.length; i++)
+            {
+                highScoreArray[i] = new JLabel("ABC 000000");
+                fW.write("ABC 000000\n");
+            }
+
+            fW.flush();
+            fW.close();
+        }
+        else
+        {
+            file = new Scanner(inputFile);
+
+            for (int i = 0; i < highScoreArray.length; i++)
+            {
+                highScoreArray[i] = new JLabel(file.nextLine());
+            }
+        }
+
 
         //"Highscore" Label.
         JLabel hs = new JLabel("High Score");

@@ -34,9 +34,9 @@ public class Credits extends JPanel implements ActionListener
 
         backButton = new JButton("Back");
         creditsLabel = new JLabel("Credits");
-        credits1 = new JLabel("Jason Kaufman");
-        credits2 = new JLabel("Amir Sotoodeh");
-        credits3 = new JLabel("Jacob Young");
+        credits1 = new JLabel("Jason Kaufman: 012134941");
+        credits2 = new JLabel("Amir Sotoodeh: 012165218");
+        credits3 = new JLabel("Jacob Young: 010224552");
 
         creditsLabel.setBounds(195,70,200,60);
         credits1.setBounds(230,150,200,40);
