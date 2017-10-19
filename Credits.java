@@ -39,14 +39,14 @@ public class Credits extends JPanel implements ActionListener
         credits3 = new JLabel("Jacob Young: 010224552");
 
         creditsLabel.setBounds(195,70,200,60);
-        credits1.setBounds(230,150,200,40);
-        credits2.setBounds(232,180,200,40);
-        credits3.setBounds(235,210,200,40);
+        credits1.setBounds(190,135,240,40);
+        credits2.setBounds(192,165,240,40);
+        credits3.setBounds(195,195,240,40);
 
         creditsLabel.setFont(new Font("Verdana", Font.BOLD, 50));
-        credits1.setFont(new Font("Verdana", Font.BOLD, 16));
-        credits2.setFont(new Font("Verdana", Font.BOLD, 16));
-        credits3.setFont(new Font("Verdana", Font.BOLD, 16));
+        credits1.setFont(new Font("Verdana", Font.BOLD, 14));
+        credits2.setFont(new Font("Verdana", Font.BOLD, 14));
+        credits3.setFont(new Font("Verdana", Font.BOLD, 14));
         //generates back button and adds action listener.
         backButton.addActionListener(this);
         backButton.setBounds(240,260,100,24);
