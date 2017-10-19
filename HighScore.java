@@ -155,8 +155,26 @@ public class HighScore extends JPanel implements ActionListener
             }
         }
     }
+    public boolean isHighScore(int x)
+    {
+        boolean higher = false;
+        String line;
+        String[] splitLine;
 
-    public void updateHighScore(int x) throws IOException
+        for (int i = 0; i < highScoreArray.length; i++)
+        {
+            line = highScoreArray[i].getText();
+            splitLine = line.split(" ");
+            if (x > Integer.parseInt(splitLine[1]))
+            {
+                higher = true;
+                break;
+            }
+        }
+        return higher;
+    }
+
+    public void updateHighScore(int x, String name) throws IOException
     {
         boolean higher = false;
         int position = 0;
@@ -170,7 +188,6 @@ public class HighScore extends JPanel implements ActionListener
             splitLine = line.split(" ");
             if (x > Integer.parseInt(splitLine[1]))
             {
-                System.out.println("New high score!!!");
                 higher = true;
                 position = i;
                 break;
@@ -179,13 +196,6 @@ public class HighScore extends JPanel implements ActionListener
 
         if (higher)
         {
-            System.out.print("What is your name? ");
-
-            Scanner keyboard = new Scanner(System.in);
-            String name;
-
-            name = keyboard.nextLine();
-
             JLabel tempJ;
             JLabel newScore = new JLabel(name + " " + x);
 
@@ -205,6 +215,6 @@ public class HighScore extends JPanel implements ActionListener
 
             fW.flush();
             fW.close();
-        }
+         }
     }
 }
