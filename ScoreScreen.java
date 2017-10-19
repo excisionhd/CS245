@@ -2,12 +2,21 @@
  *  file: ScoreScreen.java
  *  author: Team FTP
  *  class: CS 245 - Programming Graphical User Interfaces
+
  *
  *  assignment: Swing Project v1.0
  *  date last modified: 10/9/17
  *
  *  purpose: This class displays the score screen after the game of Hangman
  */
+
+ * 
+ *  assignment: Swing Project v1.0
+ *  date last modified: 10/9/17
+ * 
+ *  purpose: This class displays the score screen after the game of Hangman
+ */
+//package swingv1.pkg0;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
