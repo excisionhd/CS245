@@ -4,7 +4,8 @@
  * file: HighScore.java author: Team FTP class: CS 245 - Programming Graphical
  * User Interfaces
  *
- * assignment: Hangman date last modified: 10/9/17
+ * assignment: Swing Project v1.1
+ * date last modified: 10/19/17
  *
  * purpose: This class is the high score class that displays a high score GUI
  * that will be fully functional in the future (for the next project).
