@@ -1,38 +1,67 @@
-/***************************************************************
- * file: HighScore.java
- * author: Team FTP
- * class: CS 245 - Programming Graphical User Interfaces
- *
- * assignment: Swing Project v1.0
- * date last modified: 10/9/17
- *
- * purpose: This class is the high score class that displays a highscore
- * GUI that will be fully functional in the future (for the next project).
- *
- ****************************************************************/
 
-
+/**
+ * *************************************************************
+ * file: HighScore.java author: Team FTP class: CS 245 - Programming Graphical
+ * User Interfaces
+ *
+ * assignment: Hangman date last modified: 10/9/17
+ *
+ * purpose: This class is the high score class that displays a high score GUI
+ * that will be fully functional in the future (for the next project).
+ *
+ ***************************************************************
+ */
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
-public class HighScore extends JPanel implements ActionListener{
+public class HighScore extends JPanel implements ActionListener
+{
 
-    private JLabel[] highScoreArray;
-    private JButton backButton;
+    private JLabel[] highScoreArray = new JLabel[5]; //array of high scores where index 0 is highest.
+    private JButton backButton = new JButton("Back"); //back button
     private Game game;
 
+    private Scanner file;
 
     //Constructor, pass in game for reference.
-    public HighScore(Game game){
-        highScoreArray = new JLabel[5]; //array of high scores where index 0 is highest.
-        backButton = new JButton("Back"); //back button
+    public HighScore(Game game) throws IOException
+    {
         this.game = game;
         //initialize new Labels into array.
-        for(int i = 0;i<highScoreArray.length;i++){
-            highScoreArray[i] = new JLabel("ABC.....000000");
+
+        File inputFile = new File("highscore.txt");
+
+        try {
+            if (!inputFile.exists()) {
+                inputFile.createNewFile();
+
+                FileWriter fW = new FileWriter(inputFile);
+
+                for (int i = 0; i < highScoreArray.length; i++) {
+                    highScoreArray[i] = new JLabel("ABC 000000");
+                    fW.write("ABC 000000\n");
+                }
+
+                fW.flush();
+                fW.close();
+            } else {
+                file = new Scanner(inputFile);
+
+                for (int i = 0; i < highScoreArray.length; i++) {
+                    highScoreArray[i] = new JLabel(file.nextLine());
+                }
+            }
+        }
+        catch(FileNotFoundException e){
+            e.getMessage();
         }
 
         //"Highscore" Label.
@@ -41,24 +70,25 @@ public class HighScore extends JPanel implements ActionListener{
         Container c1 = new Container();
 
         //setting the LayoutManager as box so that it appears as a list.
-        c1.setLayout(new BoxLayout(c1,BoxLayout.PAGE_AXIS));
+        c1.setLayout(new BoxLayout(c1, BoxLayout.PAGE_AXIS));
 
         //create whitespace between Panel and Label
-        c1.add(Box.createRigidArea(new Dimension(0,50)));
+        c1.add(Box.createRigidArea(new Dimension(0, 50)));
         c1.add(hs);
 
         //create whitespace between Label and HighScore Labels
-        c1.add(Box.createRigidArea(new Dimension(0,40)));
-
+        c1.add(Box.createRigidArea(new Dimension(0, 40)));
 
         //adds all highscores into the container.
-        for(int i=0;i<highScoreArray.length;i++) {
+        for (int i = 0; i < highScoreArray.length; i++)
+        {
             c1.add(highScoreArray[i]);
         }
 
         //set the font for all the labels
         hs.setFont(new Font("Arial", Font.BOLD, 32));
-        for(int i=0;i<highScoreArray.length;i++) {
+        for (int i = 0; i < highScoreArray.length; i++)
+        {
             highScoreArray[i].setFont(new Font("Arial", Font.BOLD, 16));
         }
 
@@ -66,7 +96,7 @@ public class HighScore extends JPanel implements ActionListener{
         backButton.addActionListener(this);
 
         //create whitespace between back button and high scores.
-        c1.add(Box.createRigidArea(new Dimension(0,40)));
+        c1.add(Box.createRigidArea(new Dimension(0, 40)));
         c1.add(backButton);
 
         //add the container into the panel.
@@ -75,17 +105,21 @@ public class HighScore extends JPanel implements ActionListener{
 
     //override method that allows the user to back into the menu.
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent e)
+    {
         Object o = e.getSource();
         JButton b = null;
         String buttonText = "";
 
-        if(o instanceof JButton) {
+        if (o instanceof JButton)
+        {
             b = (JButton) o;
         }
 
-        if(b!=null){
-            if(b.getText().equalsIgnoreCase("back")){
+        if (b != null)
+        {
+            if (b.getText().equalsIgnoreCase("back"))
+            {
                 game.frame.getContentPane().setVisible(false);
                 game.frame.getContentPane().remove(this);
                 game.frame.add(new Menu(game));
@@ -94,4 +128,55 @@ public class HighScore extends JPanel implements ActionListener{
         }
     }
 
+    public void updateHighScore(int x) throws IOException
+    {
+        boolean higher = false;
+        int position = 0;
+
+        String line;
+        String[] splitLine;
+
+        for (int i = 0; i < highScoreArray.length; i++)
+        {
+            line = highScoreArray[i].getText();
+            splitLine = line.split(" ");
+            if (x > Integer.parseInt(splitLine[1]))
+            {
+                System.out.println("New high score!!!");
+                higher = true;
+                position = i;
+                break;
+            }
+        }
+
+        if (higher)
+        {
+            System.out.print("What is your name? ");
+
+            Scanner keyboard = new Scanner(System.in);
+            String name;
+
+            name = keyboard.nextLine();
+
+            JLabel tempJ;
+            JLabel newScore = new JLabel(name + " " + x);
+
+            for (int i = position; i < highScoreArray.length; i++)
+            {
+                tempJ = highScoreArray[i];
+                highScoreArray[i] = newScore;
+                newScore = tempJ;
+            }
+
+            FileWriter fW = new FileWriter(new File("highscore.txt"));
+
+            for (int i = 0; i < highScoreArray.length; i++)
+            {
+                fW.write(highScoreArray[i].getText() + "\n");
+            }
+
+            fW.flush();
+            fW.close();
+        }
+    }
 }
