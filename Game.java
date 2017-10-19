@@ -3,10 +3,11 @@
  * author: Team FTP
  * class: CS 245
  *
- * assignment: program 1
+ * assignment: Swing Project v1.0
  * date last modified: 10/9/2017
  *
- * purpose: This is the main method which ties all other panels into one frame
+ * purpose: This is the main method which ties all other panels into
+ * one frame.
  *
  ****************************************************************/
 
@@ -26,13 +27,10 @@ public class Game {
     HighScore hs;
     ScoreScreen ss;
     Hangman hg;
+    ButtonGame bg;
 
     public enum STATE{ //allows access to each panel
         Intro,
-        Menu,
-        HighScore,
-        Credits,
-        Game,
     }
 
     public static STATE gameState = STATE.Intro; //starts game in intro
@@ -41,13 +39,13 @@ public class Game {
     public Game(){ //initializes each panel upon creating the frame
 
         frame = new JFrame("CS245 Project");
-        intro = new MyPanel();
+        intro = new MyPanel(this);
         hs = new HighScore(this);
         hg = new Hangman(this);
         menu = new Menu(this);
         credits = new Credits(this);
 
-        frame.setPreferredSize(new Dimension(600, 400));
+        frame.setPreferredSize(new Dimension(FINAL_WIDTH, FINAL_HEIGHT));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
@@ -64,16 +62,12 @@ public class Game {
                 e.printStackTrace();
             }
 
-            System.out.println("DONE");
             frame.getContentPane().setVisible(false);
             frame.getContentPane().remove(intro);
-            frame.add(menu);
+            frame.add(menu); //start
             frame.getContentPane().setVisible(true);
 
         }
-
-
-
 
 
     }
