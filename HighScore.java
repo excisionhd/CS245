@@ -1,4 +1,3 @@
-package swingv1.pkg0;
 
 /**
  * *************************************************************
@@ -101,8 +100,6 @@ public class HighScore extends JPanel implements ActionListener
 
         //add the container into the panel.
         this.add(c1);
-        
-        updateHighScore(200);
     }
 
     //override method that allows the user to back into the menu.

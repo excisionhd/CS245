@@ -12,6 +12,7 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import javax.swing.*;
 
 //Public class for displaying the score screen
@@ -20,15 +21,14 @@ public class ScoreScreen extends JPanel implements ActionListener
     //Create instance variables
     private Game game;
     private JButton backButton;
-    private int score;
 
     //Initialize instance variables
-    public ScoreScreen(Game game, int score)
+    public ScoreScreen(Game game, int score) throws IOException
     {
+        this.game = game;
+        game.hs.updateHighScore(score);
         backButton = new JButton("End");
         backButton.addActionListener(this);
-        this.game = game;
-        this.score = score;
         //Create a new container
         Container container = new Container();
 

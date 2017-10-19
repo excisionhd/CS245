@@ -15,6 +15,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+import java.io.IOException;
 import java.util.*;
 import java.util.List;
 
@@ -23,6 +24,7 @@ public class ButtonGame extends JPanel implements ActionListener
 {
 
     private Game game;
+    private HighScore hs;
     private JLabel clockLabel;
     private JLabel colorLabel;
     private JButton[] randomCircles;
@@ -62,7 +64,7 @@ public class ButtonGame extends JPanel implements ActionListener
                 if(tries == 0){
                     game.frame.getContentPane().setVisible(false);
                     game.frame.getContentPane().remove(this);
-                    game.frame.add(new ScoreScreen(game,score));
+                    try {game.frame.add(new ScoreScreen(game,score)); } catch (IOException io) {System.out.println(io);}
                     game.frame.getContentPane().setVisible(true);
                 }
 
@@ -76,7 +78,7 @@ public class ButtonGame extends JPanel implements ActionListener
                 if(tries == 0){
                     game.frame.getContentPane().setVisible(false);
                     game.frame.getContentPane().remove(this);
-                    game.frame.add(new ScoreScreen(game,score));
+                    try {game.frame.add(new ScoreScreen(game,score)); } catch (IOException io) {System.out.println(io);}
                     game.frame.getContentPane().setVisible(true);
                 }
             }

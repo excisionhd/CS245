@@ -39,6 +39,7 @@ public class Hangman extends JPanel implements ActionListener{
     private int score=100;
     private int mistakes =0;
     private Game game;
+    private HighScore hs;
 
     public Hangman(Game game){
         this.game = game;
