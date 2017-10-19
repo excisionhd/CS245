@@ -42,13 +42,11 @@ public class Hangman extends JPanel implements ActionListener{
 
     public Hangman(Game game){
         this.game = game;
-        int randomNumber = r.nextInt(4+1);
+        int randomNumber = r.nextInt(words.length);
         word = words[randomNumber];
         guessed = new boolean[word.length()];
         loadGUI();
         clock();
-
-
     }
 
     public void clock(){ //clock that runs throughout program
@@ -171,9 +169,10 @@ public class Hangman extends JPanel implements ActionListener{
             setChoice(b.getText().toLowerCase());
 
             if (choice.equals("skip")){
+                setScore(0);
                 game.frame.getContentPane().setVisible(false);
                 game.frame.getContentPane().remove(this);
-                game.frame.add(new ScoreScreen(game,0));
+                game.frame.add(new ButtonGame(game,score));
                 game.frame.getContentPane().setVisible(true);
             }
 
@@ -251,14 +250,16 @@ public class Hangman extends JPanel implements ActionListener{
 
                 game.frame.getContentPane().setVisible(false);
                 game.frame.getContentPane().remove(this);
-                game.frame.add(new ScoreScreen(game,score));
+                game.frame.add(new ButtonGame(game,score));
+                //game.frame.add(new ScoreScreen(game,score));
                 game.frame.getContentPane().setVisible(true);
             }
 
             if(mistakes ==6){
                 game.frame.getContentPane().setVisible(false);
                 game.frame.getContentPane().remove(this);
-                game.frame.add(new ScoreScreen(game,score));
+                game.frame.add(new ButtonGame(game,score));
+                //game.frame.add(new ScoreScreen(game,score));
                 game.frame.getContentPane().setVisible(true);
             }
         }
@@ -274,5 +275,8 @@ public class Hangman extends JPanel implements ActionListener{
 
     public int getScore(){
         return score;
+    }
+    public void setScore(int s){
+        score = s;
     }
 }

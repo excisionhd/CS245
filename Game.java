@@ -27,6 +27,7 @@ public class Game {
     HighScore hs;
     ScoreScreen ss;
     Hangman hg;
+    ButtonGame bg;
 
     public enum STATE{ //allows access to each panel
         Intro,
@@ -44,7 +45,7 @@ public class Game {
         menu = new Menu(this);
         credits = new Credits(this);
 
-        frame.setPreferredSize(new Dimension(600, 400));
+        frame.setPreferredSize(new Dimension(FINAL_WIDTH, FINAL_HEIGHT));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
@@ -55,16 +56,15 @@ public class Game {
         if(gameState == STATE.Intro) { //create game state with intro screen
 
             try {
-                TimeUnit.SECONDS.sleep(3); //hold title for 3 second
+                TimeUnit.SECONDS.sleep(1); //hold title for 3 second
             }
             catch(InterruptedException e){
                 e.printStackTrace();
             }
 
-            System.out.println("DONE");
             frame.getContentPane().setVisible(false);
             frame.getContentPane().remove(intro);
-            frame.add(menu);
+            frame.add(menu); //start
             frame.getContentPane().setVisible(true);
 
         }
