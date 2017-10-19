@@ -69,7 +69,7 @@ public class ButtonGame extends JPanel implements ActionListener
             }
 
             else{
-                
+
                 tries--;
                 generateGame();
 

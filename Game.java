@@ -56,7 +56,7 @@ public class Game {
         if(gameState == STATE.Intro) { //create game state with intro screen
 
             try {
-                TimeUnit.SECONDS.sleep(1); //hold title for 3 second
+                TimeUnit.SECONDS.sleep(3); //hold title for 3 second
             }
             catch(InterruptedException e){
                 e.printStackTrace();
