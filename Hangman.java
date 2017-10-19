@@ -3,8 +3,8 @@
  * author: Team FTP
  * class: CS 245
  *
- * assignment: Swing Project v1.0
- * date last modified: 10/9/2017
+ * assignment: Swing Project v1.1
+ * date last modified: 10/19/17
  *
  * purpose: GUI for hangman game, consists of the score
  * and keeps track of the right and wrong guesses.
