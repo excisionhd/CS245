@@ -22,27 +22,40 @@ public class Credits extends JPanel implements ActionListener
 
     private Game game;
     private JButton backButton;
+    private JLabel creditsLabel;
+    private JLabel credits1, credits2, credits3;
 
     //constructor, accepts game for reference
     public Credits(Game game)
     {
         this.game = game;
 
-        //generates back button and adds action listener.
+        setLayout(null);
+
         backButton = new JButton("Back");
+        creditsLabel = new JLabel("Credits");
+        credits1 = new JLabel("Jason Kaufman");
+        credits2 = new JLabel("Amir Sotoodeh");
+        credits3 = new JLabel("Jacob Young");
+
+        creditsLabel.setBounds(195,70,200,60);
+        credits1.setBounds(230,150,200,40);
+        credits2.setBounds(232,180,200,40);
+        credits3.setBounds(235,210,200,40);
+
+        creditsLabel.setFont(new Font("Verdana", Font.BOLD, 50));
+        credits1.setFont(new Font("Verdana", Font.BOLD, 16));
+        credits2.setFont(new Font("Verdana", Font.BOLD, 16));
+        credits3.setFont(new Font("Verdana", Font.BOLD, 16));
+        //generates back button and adds action listener.
         backButton.addActionListener(this);
+        backButton.setBounds(240,260,100,24);
 
-        //Create a new container
-        Container container = new Container();
-
-        //Makes the container a box so that the credits will appear starting from the top going down
-        container.setLayout(new BoxLayout(container, BoxLayout.PAGE_AXIS));
-
-        //Moves the next label down so it is not close to te top of the window
-        container.add(Box.createRigidArea(new Dimension(0, 50)));
-
-        //Adds the container to the panel
-        this.add(container);
+        add(creditsLabel);
+        add(credits1);
+        add(credits2);
+        add(credits3);
+        add(backButton);
     }
 
     //override method that allows the user to back into the menu.

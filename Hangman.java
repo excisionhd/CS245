@@ -276,10 +276,7 @@ public class Hangman extends JPanel implements ActionListener{
     public int getScore(){
         return score;
     }
-
     public void setScore(int s){
         score = s;
     }
-}
-
 }
