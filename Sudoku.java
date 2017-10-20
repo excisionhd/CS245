@@ -3,7 +3,7 @@
  * author: Team FTP
  * class: CS 245 - Programming Graphical User Interfaces
  *
- * assignment: Swing Project v1.1
+ * assignment: Swing Project v1.2
  * date last modified: 10/19/17
  *
  * purpose: This class is the Sudoku game panel
@@ -26,6 +26,6 @@ public class Sudoku extends JPanel implements ActionListener
     @Override
     public void actionPerformed(ActionEvent e)
     {
-        
+
     }
 }

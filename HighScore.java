@@ -1,10 +1,9 @@
-
 /**
  * *************************************************************
  * file: HighScore.java author: Team FTP class: CS 245 - Programming Graphical
  * User Interfaces
  *
- * assignment: Swing Project v1.1
+ * assignment: Swing Project v1.2
  * date last modified: 10/19/17
  *
  * purpose: This class is the high score class that displays a high score GUI
