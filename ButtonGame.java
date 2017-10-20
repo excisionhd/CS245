@@ -63,7 +63,7 @@ public class ButtonGame extends JPanel implements ActionListener
                 if(tries == 0){
                     game.frame.getContentPane().setVisible(false);
                     game.frame.getContentPane().remove(this);
-                    try {game.frame.add(new ScoreScreen(game,score)); } catch (IOException io) {System.out.println(io);}
+                    game.frame.add(new Sudoku(game, score));
                     game.frame.getContentPane().setVisible(true);
                 }
 
@@ -77,7 +77,7 @@ public class ButtonGame extends JPanel implements ActionListener
                 if(tries == 0){
                     game.frame.getContentPane().setVisible(false);
                     game.frame.getContentPane().remove(this);
-                    try {game.frame.add(new ScoreScreen(game,score)); } catch (IOException io) {System.out.println(io);}
+                    game.frame.add(new Sudoku(game, score));
                     game.frame.getContentPane().setVisible(true);
                 }
             }
@@ -193,17 +193,22 @@ public class ButtonGame extends JPanel implements ActionListener
         randomCircles[0].setBounds(xPos1,yPos1,100,100);
         randomCircles[0].setBackground(colors[l.get(0)]);
         randomCircles[0].setOpaque(true);
+        randomCircles[0].setToolTipText("Select");
         randomCircles[1].setBounds(xPos2,yPos2,100,100);
         randomCircles[1].setBackground(colors[l.get(1)]);
         randomCircles[1].setOpaque(true);
+        randomCircles[1].setToolTipText("Select");
         randomCircles[2].setBounds(xPos3,yPos3,100,100);
         randomCircles[2].setBackground(colors[l.get(2)]);
         randomCircles[2].setOpaque(true);
+        randomCircles[2].setToolTipText("Select");
         randomCircles[3].setBounds(xPos4,yPos4,100,100);
         randomCircles[3].setBackground(colors[l.get(3)]);
         randomCircles[3].setOpaque(true);
+        randomCircles[3].setToolTipText("Select");
         randomCircles[4].setBounds(xPos5,yPos5,100,100);
         randomCircles[4].setBackground(colors[l.get(4)]);
         randomCircles[4].setOpaque(true);
+        randomCircles[4].setToolTipText("Select");
     }
 }

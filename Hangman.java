@@ -115,6 +115,7 @@ public class Hangman extends JPanel implements ActionListener{
         for(int i = 0;i<buttons.length;i++,ascii++) {
 
             buttons[i] = new JButton(Character.toString((char) ascii));
+            buttons[i].setToolTipText("Select");
             buttons[i].setPreferredSize(new Dimension(30,30));
             buttons[i].setBorder(null);
             buttons[i].setFont(new Font("Arial", Font.BOLD, 10));
