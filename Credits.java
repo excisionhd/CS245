@@ -49,6 +49,7 @@ public class Credits extends JPanel implements ActionListener
         credits3.setFont(new Font("Verdana", Font.BOLD, 14));
         //generates back button and adds action listener.
         backButton.addActionListener(this);
+        backButton.setToolTipText("Main Menu");
         backButton.setBounds(240,260,100,24);
 
         add(creditsLabel);

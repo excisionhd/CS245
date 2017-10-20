@@ -84,6 +84,7 @@ public class Hangman extends JPanel implements ActionListener{
         scoreLabel = new JLabel("Score: "+score);
         skipButton = new JButton("Skip");
         skipButton.addActionListener(this);
+        skipButton.setToolTipText("Continue to next game");
 
 
         Container hold = new Container();

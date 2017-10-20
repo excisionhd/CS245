@@ -123,6 +123,7 @@ public class HighScore extends JPanel implements ActionListener
 
         //listen for click
         backButton.addActionListener(this);
+        backButton.setToolTipText("Main Menu");
 
         //create whitespace between back button and high scores.
         c1.add(Box.createRigidArea(new Dimension(0, 40)));

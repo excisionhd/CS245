@@ -1,13 +1,12 @@
 /***************************************************************
- * file: Credits.java
+ * file: ButtonGame.java
  * author: Team FTP
  * class: CS 245 - Programming Graphical User Interfaces
  *
  * assignment: Swing Project v1.1
  * date last modified: 10/19/17
  *
- * purpose: This class is the credits GUI that consist of labels
- * for every team member that contributed to the program.
+ * purpose: This class runs the button game panel
  *
  ****************************************************************/
 
