@@ -3,7 +3,7 @@
  * author: Team FTP
  * class: CS 245 - Programming Graphical User Interfaces
  *
- * assignment: Swing Project v1.1
+ * assignment: Swing Project v1.2
  * date last modified: 10/19/17
  *
  * purpose: This class is the credits GUI that consist of labels
@@ -49,6 +49,7 @@ public class Credits extends JPanel implements ActionListener
         credits3.setFont(new Font("Verdana", Font.BOLD, 14));
         //generates back button and adds action listener.
         backButton.addActionListener(this);
+        backButton.setToolTipText("Main Menu");
         backButton.setBounds(240,260,100,24);
 
         add(creditsLabel);

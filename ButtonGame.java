@@ -99,8 +99,8 @@ public class ButtonGame extends JPanel implements ActionListener
                         int minute = cal.get(Calendar.MINUTE);
                         int hour = cal.get(Calendar.HOUR);
 
-                        clockLabel.setText("Time " + hour + ":" + minute + ":" + second + "      Date " + month + "/" + day + "/" + year);
-                        sleep(1000);
+                            clockLabel.setText("Time " + hour + ":" + minute + ":" + second + "      Date " + month + "/" + day + "/" + year);
+                            sleep(1000);
 
                     }
                 } catch (InterruptedException e){
@@ -128,7 +128,7 @@ public class ButtonGame extends JPanel implements ActionListener
             add(randomCircles[i]);
         }
 
-        clockLabel.setBounds(400,0,200,20);
+        clockLabel.setBounds(400,2,200,20);
         colorLabel.setBounds(245,40, 200, 40);
         colorLabel.setFont(new Font("Arial", Font.BOLD, 32));
         add(clockLabel);

@@ -3,7 +3,7 @@
  * author: Team FTP
  * class: CS 245
  *
- * assignment: Swing Project v1.1
+ * assignment: Swing Project v1.2
  * date last modified: 10/19/17
  *
  * purpose: Intro screen that displays the project and
