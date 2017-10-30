@@ -1,7 +1,8 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -13,13 +14,6 @@ public class Sudoku extends JPanel implements ActionListener{
     private JLabel clockLabel;
     private JLabel sudokuLabel;
     private JButton quitButton;
-
-import javax.swing.*;
-
-public class Sudoku extends JPanel {
-    private Game game;
-    private int score;
-
     private static final int CLUSTER = 3;
     private static final int MAX_ROWS = 9;
     private static final float FIELD_PTS = 32f;
@@ -32,19 +26,11 @@ public class Sudoku extends JPanel {
     public Sudoku(Game game, int score) {
         this.game = game;
         this.score = score;
-
         clockLabel = new JLabel("");
         sudokuLabel = new JLabel("Sudoku");
         sudokuLabel.setFont(new Font("Arial", Font.BOLD, 20));
         quitButton = new JButton("Quit");
         clock();
-
-        JLabel ja = new JLabel("Hello");
-        JLabel ja2 = new JLabel("Hel2lo");
-
-
-
-        
 
         JPanel mainPanel = new JPanel(new GridLayout(CLUSTER, CLUSTER));
         mainPanel.setBorder(BorderFactory.createEmptyBorder(GAP, GAP, GAP, GAP));
@@ -67,7 +53,6 @@ public class Sudoku extends JPanel {
                 panels[i][j].add(fieldGrid[row][col]);
             }
         }
-
         JButton button = new JButton(new SolveAction("Submit"));
         setLayout(null);
         mainPanel.setBounds(125,20,340,340);
@@ -82,21 +67,21 @@ public class Sudoku extends JPanel {
         add(mainPanel);
         add(button);
 
-
-        setLayout(new BorderLayout());
-        add(mainPanel, BorderLayout.CENTER);
-        add(new JButton(new SolveAction("Solve")), BorderLayout.PAGE_END);
-
     }
 
     private JTextField createField(int row, int col) {
         JTextField field = new JTextField(2);
+        field.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+                if (field.getText().length() >= 1 ) // limit textfield to 3 characters
+                    e.consume();
+            }
+        });
         field.setHorizontalAlignment(JTextField.CENTER);
         field.setFont(field.getFont().deriveFont(Font.BOLD, FIELD_PTS));
 
         return field;
     }
-
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -123,8 +108,6 @@ public class Sudoku extends JPanel {
             }
         }
     }
-
-
 
     private class SolveAction extends AbstractAction {
 
@@ -161,7 +144,6 @@ public class Sudoku extends JPanel {
         }
     }
 
-
     public void clock(){ //clock that runs throughout program
         Thread clock = new Thread(){
             public void run(){
@@ -186,6 +168,4 @@ public class Sudoku extends JPanel {
         };
         clock.start();
     }
-
-
 }
