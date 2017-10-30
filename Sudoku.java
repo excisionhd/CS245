@@ -1,3 +1,5 @@
+package swingv1.pkg0;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,7 +10,9 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import javax.swing.*;
 
-public class Sudoku extends JPanel implements ActionListener{
+public class Sudoku extends JPanel implements ActionListener
+{
+
     private Game game;
     private int score;
     private JLabel clockLabel;
@@ -23,7 +27,8 @@ public class Sudoku extends JPanel implements ActionListener{
     public static final int TIMER_DELAY = 2 * 1000;
     private JTextField[][] fieldGrid = new JTextField[MAX_ROWS][MAX_ROWS];
 
-    public Sudoku(Game game, int score) {
+    public Sudoku(Game game, int score)
+    {
         this.game = game;
         this.score = score;
         clockLabel = new JLabel("");
@@ -36,8 +41,10 @@ public class Sudoku extends JPanel implements ActionListener{
         mainPanel.setBorder(BorderFactory.createEmptyBorder(GAP, GAP, GAP, GAP));
         mainPanel.setBackground(BG);
         JPanel[][] panels = new JPanel[CLUSTER][CLUSTER];
-        for (int i = 0; i < panels.length; i++) {
-            for (int j = 0; j < panels[i].length; j++) {
+        for (int i = 0; i < panels.length; i++)
+        {
+            for (int j = 0; j < panels[i].length; j++)
+            {
                 panels[i][j] = new JPanel(new GridLayout(CLUSTER, CLUSTER, 1, 1));
                 panels[i][j].setBackground(BG);
                 panels[i][j].setBorder(BorderFactory.createEmptyBorder(GAP, GAP, GAP, GAP));
@@ -45,8 +52,10 @@ public class Sudoku extends JPanel implements ActionListener{
             }
         }
 
-        for (int row = 0; row < fieldGrid.length; row++) {
-            for (int col = 0; col < fieldGrid[row].length; col++) {
+        for (int row = 0; row < fieldGrid.length; row++)
+        {
+            for (int col = 0; col < fieldGrid[row].length; col++)
+            {
                 fieldGrid[row][col] = createField(row, col);
                 int i = row / 3;
                 int j = col / 3;
@@ -55,11 +64,11 @@ public class Sudoku extends JPanel implements ActionListener{
         }
         JButton button = new JButton(new SolveAction("Submit"));
         setLayout(null);
-        mainPanel.setBounds(125,20,340,340);
-        button.setBounds(15,300,75,30);
-        clockLabel.setBounds(400,0,200,20);
-        sudokuLabel.setBounds(5,2,80,32);
-        quitButton.setBounds(495,300,75,30);
+        mainPanel.setBounds(125, 20, 340, 340);
+        button.setBounds(15, 300, 75, 30);
+        clockLabel.setBounds(400, 0, 200, 20);
+        sudokuLabel.setBounds(5, 2, 80, 32);
+        quitButton.setBounds(495, 300, 75, 30);
         quitButton.addActionListener(this);
         add(quitButton);
         add(sudokuLabel);
@@ -69,12 +78,22 @@ public class Sudoku extends JPanel implements ActionListener{
 
     }
 
-    private JTextField createField(int row, int col) {
+    private JTextField createField(int row, int col)
+    {
         JTextField field = new JTextField(2);
-        field.addKeyListener(new KeyAdapter() {
-            public void keyTyped(KeyEvent e) {
-                if (field.getText().length() >= 1 ) // limit textfield to 3 characters
+        field.setTransferHandler(null);
+        field.addKeyListener(new KeyAdapter()
+        {
+            public void keyTyped(KeyEvent e)
+            {
+                if (field.getText().length() >= 1) // limit textfield to 3 characters
+                {
                     e.consume();
+                }
+                else if (e.getKeyChar() > 57 || e.getKeyChar() < 49)
+                {
+                    e.consume();
+                }
             }
         });
         field.setHorizontalAlignment(JTextField.CENTER);
@@ -84,53 +103,66 @@ public class Sudoku extends JPanel implements ActionListener{
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent e)
+    {
         Object o = e.getSource();
         JButton b = null;
         String buttonText = "";
 
-        if(o instanceof JButton) {
+        if (o instanceof JButton)
+        {
             b = (JButton) o;
         }
 
-        if( b!=null) { //allows access to the button variable and can determine what action to take
+        if (b != null)
+        { //allows access to the button variable and can determine what action to take
 
-            if (b.getText().equalsIgnoreCase("quit")) {
-                try {
+            if (b.getText().equalsIgnoreCase("quit"))
+            {
+                try
+                {
                     game.frame.getContentPane().setVisible(false);
                     game.frame.getContentPane().remove(this);
                     game.frame.add(new ScoreScreen(this.game, score));
                     game.frame.getContentPane().setVisible(true);
                 }
-                catch(IOException e2){
+                catch (IOException e2)
+                {
                     e2.getMessage();
                 }
             }
         }
     }
 
-    private class SolveAction extends AbstractAction {
+    private class SolveAction extends AbstractAction
+    {
 
-        public SolveAction(String name) {
+        public SolveAction(String name)
+        {
             super(name);
             int mnemonic = (int) name.charAt(0);
             putValue(MNEMONIC_KEY, mnemonic);
         }
 
         @Override
-        public void actionPerformed(ActionEvent e) {
+        public void actionPerformed(ActionEvent e)
+        {
 
-            new Timer(TIMER_DELAY, new ActionListener() {
+            new Timer(TIMER_DELAY, new ActionListener()
+            {
                 private int i = 0;
                 private int j = 0;
 
                 @Override
-                public void actionPerformed(ActionEvent e) {
+                public void actionPerformed(ActionEvent e)
+                {
                     // MAX_ROWS is 9
-                    if (i == MAX_ROWS) {
+                    if (i == MAX_ROWS)
+                    {
                         ((Timer) e.getSource()).stop();
                     }
-                    if (j == MAX_ROWS) {
+                    if (j == MAX_ROWS)
+                    {
                         i++;
                         j = 0;
                     }
@@ -144,14 +176,19 @@ public class Sudoku extends JPanel implements ActionListener{
         }
     }
 
-    public void clock(){ //clock that runs throughout program
-        Thread clock = new Thread(){
-            public void run(){
-                try{
-                    for(;;) {
+    public void clock()
+    { //clock that runs throughout program
+        Thread clock = new Thread()
+        {
+            public void run()
+            {
+                try
+                {
+                    for (;;)
+                    {
                         Calendar cal = new GregorianCalendar();
                         int day = cal.get(Calendar.DAY_OF_MONTH);
-                        int month = cal.get(Calendar.MONTH)+1;
+                        int month = cal.get(Calendar.MONTH) + 1;
                         int year = cal.get(Calendar.YEAR);
 
                         int second = cal.get(Calendar.SECOND);
@@ -161,7 +198,9 @@ public class Sudoku extends JPanel implements ActionListener{
                         clockLabel.setText("Time " + hour + ":" + minute + ":" + second + "      Date " + month + "/" + day + "/" + year);
                         sleep(1000);
                     }
-                } catch (InterruptedException e){
+                }
+                catch (InterruptedException e)
+                {
                     e.printStackTrace();
                 }
             }
