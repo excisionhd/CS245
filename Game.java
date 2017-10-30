@@ -13,7 +13,6 @@
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 public class Game {
@@ -37,7 +36,7 @@ public class Game {
     public static STATE gameState = STATE.Intro; //starts game in intro
 
 
-    public Game() throws IOException { //initializes each panel upon creating the frame
+    public Game(){ //initializes each panel upon creating the frame
 
         frame = new JFrame("CS245 Project");
         intro = new MyPanel(this);
@@ -75,7 +74,7 @@ public class Game {
 
 
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         new Game();
     } //run game
 }
