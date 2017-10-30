@@ -1,3 +1,5 @@
+package swingv1.pkg0;
+
 /***************************************************************
  * file: Sudoku.java
  * author: Team FTP
@@ -29,6 +31,8 @@ public class Sudoku extends JPanel implements ActionListener
     private JTextField[][] numbers;
     private JButton submit;
     private JButton quit;
+    
+    private JTextField[][] grid = new JTextField[SUDOKU_WIDTH][SUDOKU_HEIGHT];
 
     public Sudoku(Game game, int score)
     {
@@ -37,7 +41,33 @@ public class Sudoku extends JPanel implements ActionListener
         numbers = new JTextField[SUDOKU_WIDTH][SUDOKU_HEIGHT];
         JButton submit = new JButton("Submit");
         JButton quit = new JButton("Quit");
-
+        
+        JPanel headPanel = new JPanel(new GridLayout(3, 3));
+        headPanel.setBorder(BorderFactory.createEmptyBorder(3, 3, 3, 3));
+        headPanel.setBackground(Color.BLACK);
+        
+        JPanel[][] panel = new JPanel[3][3];
+        
+        for(int i = 0; i < panel.length;i++)
+        {
+            for(int j = 0; j < panel[i].length; j++)
+            {
+                panel[i][j] = new JPanel(new GridLayout(3, 3, 1, 1));
+                panel[i][j].setBackground(Color.BLACK);
+                panel[i][j].setBorder(BorderFactory.createEmptyBorder(3, 3, 3, 3));
+                headPanel.add(panel[i][j]);
+            }
+        }
+        
+        for(int i = 0; i < grid.length; i++)
+        {
+            for(int j = 0; j < grid[i].length; j++)
+            {
+                JTextField currentPanel = new JTextField(2);
+                currentPanel.setHorizontalAlignment(JTextField.CENTER);
+                currentPanel.setFont(currentPanel.getFont().deriveFont(Font.BOLD, 32.0f));
+            }
+        }
         for (int i = 0; i < SUDOKU_HEIGHT; i++)
         {
             for (int j = 0; j < SUDOKU_WIDTH; j++)
