@@ -1,25 +1,11 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import java.io.IOException;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import javax.swing.*;
-
-public class Sudoku extends JPanel implements ActionListener{
-    private Game game;
-    private int score;
-    private JLabel clockLabel;
-    private JLabel sudokuLabel;
-    private JButton quitButton;
-
 import javax.swing.*;
 
 public class Sudoku extends JPanel {
     private Game game;
     private int score;
-
     private static final int CLUSTER = 3;
     private static final int MAX_ROWS = 9;
     private static final float FIELD_PTS = 32f;
@@ -32,20 +18,6 @@ public class Sudoku extends JPanel {
     public Sudoku(Game game, int score) {
         this.game = game;
         this.score = score;
-
-        clockLabel = new JLabel("");
-        sudokuLabel = new JLabel("Sudoku");
-        sudokuLabel.setFont(new Font("Arial", Font.BOLD, 20));
-        quitButton = new JButton("Quit");
-        clock();
-
-        JLabel ja = new JLabel("Hello");
-        JLabel ja2 = new JLabel("Hel2lo");
-
-
-
-        
-
         JPanel mainPanel = new JPanel(new GridLayout(CLUSTER, CLUSTER));
         mainPanel.setBorder(BorderFactory.createEmptyBorder(GAP, GAP, GAP, GAP));
         mainPanel.setBackground(BG);
@@ -68,25 +40,9 @@ public class Sudoku extends JPanel {
             }
         }
 
-        JButton button = new JButton(new SolveAction("Submit"));
-        setLayout(null);
-        mainPanel.setBounds(125,20,340,340);
-        button.setBounds(15,300,75,30);
-        clockLabel.setBounds(400,0,200,20);
-        sudokuLabel.setBounds(5,2,80,32);
-        quitButton.setBounds(495,300,75,30);
-        quitButton.addActionListener(this);
-        add(quitButton);
-        add(sudokuLabel);
-        add(clockLabel);
-        add(mainPanel);
-        add(button);
-
-
         setLayout(new BorderLayout());
         add(mainPanel, BorderLayout.CENTER);
         add(new JButton(new SolveAction("Solve")), BorderLayout.PAGE_END);
-
     }
 
     private JTextField createField(int row, int col) {
@@ -96,35 +52,6 @@ public class Sudoku extends JPanel {
 
         return field;
     }
-
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        Object o = e.getSource();
-        JButton b = null;
-        String buttonText = "";
-
-        if(o instanceof JButton) {
-            b = (JButton) o;
-        }
-
-        if( b!=null) { //allows access to the button variable and can determine what action to take
-
-            if (b.getText().equalsIgnoreCase("quit")) {
-                try {
-                    game.frame.getContentPane().setVisible(false);
-                    game.frame.getContentPane().remove(this);
-                    game.frame.add(new ScoreScreen(this.game, score));
-                    game.frame.getContentPane().setVisible(true);
-                }
-                catch(IOException e2){
-                    e2.getMessage();
-                }
-            }
-        }
-    }
-
-
 
     private class SolveAction extends AbstractAction {
 
@@ -136,7 +63,6 @@ public class Sudoku extends JPanel {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-
             new Timer(TIMER_DELAY, new ActionListener() {
                 private int i = 0;
                 private int j = 0;
@@ -160,32 +86,4 @@ public class Sudoku extends JPanel {
             }).start();
         }
     }
-
-
-    public void clock(){ //clock that runs throughout program
-        Thread clock = new Thread(){
-            public void run(){
-                try{
-                    for(;;) {
-                        Calendar cal = new GregorianCalendar();
-                        int day = cal.get(Calendar.DAY_OF_MONTH);
-                        int month = cal.get(Calendar.MONTH)+1;
-                        int year = cal.get(Calendar.YEAR);
-
-                        int second = cal.get(Calendar.SECOND);
-                        int minute = cal.get(Calendar.MINUTE);
-                        int hour = cal.get(Calendar.HOUR);
-
-                        clockLabel.setText("Time " + hour + ":" + minute + ":" + second + "      Date " + month + "/" + day + "/" + year);
-                        sleep(1000);
-                    }
-                } catch (InterruptedException e){
-                    e.printStackTrace();
-                }
-            }
-        };
-        clock.start();
-    }
-
-
 }
