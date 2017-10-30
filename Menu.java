@@ -3,7 +3,7 @@
  *  author: Team FTP
  *  class: CS 245 - Programming Graphical User Interfaces
  *
- * assignment: Swing Project v1.2
+ * assignment: Swing Project v1.1
  * date last modified: 10/19/17
  *
  *  purpose: This class displays the menu to the user after the
@@ -35,9 +35,6 @@ public class Menu extends JPanel implements ActionListener{
         playButton = new JButton("Play");
         creditsButton = new JButton("Credits");
         hangmanLabel = new JLabel("<html><font color='red'>H</font><font color='orange'>a</font><font color='yellow'>n</font><font color='green'>g</font><font color='blue'>m</font><font color='purple'>a</font><font color='#FF00FF'>n</font></html>");
-        playButton.setToolTipText("Play the game");
-        highScoreButton.setToolTipText("Click this to go to the high score page");
-        creditsButton.setToolTipText("Click this to go to the credits page");
         playButton.addActionListener(this);
         highScoreButton.addActionListener(this);
         creditsButton.addActionListener(this);

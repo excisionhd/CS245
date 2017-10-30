@@ -1,9 +1,10 @@
+
 /**
  * *************************************************************
  * file: HighScore.java author: Team FTP class: CS 245 - Programming Graphical
  * User Interfaces
  *
- * assignment: Swing Project v1.2
+ * assignment: Swing Project v1.1
  * date last modified: 10/19/17
  *
  * purpose: This class is the high score class that displays a high score GUI
@@ -122,7 +123,6 @@ public class HighScore extends JPanel implements ActionListener
 
         //listen for click
         backButton.addActionListener(this);
-        backButton.setToolTipText("Main Menu");
 
         //create whitespace between back button and high scores.
         c1.add(Box.createRigidArea(new Dimension(0, 40)));

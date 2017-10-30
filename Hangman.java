@@ -3,7 +3,7 @@
  * author: Team FTP
  * class: CS 245
  *
- * assignment: Swing Project v1.2
+ * assignment: Swing Project v1.1
  * date last modified: 10/19/17
  *
  * purpose: GUI for hangman game, consists of the score
@@ -84,7 +84,6 @@ public class Hangman extends JPanel implements ActionListener{
         scoreLabel = new JLabel("Score: "+score);
         skipButton = new JButton("Skip");
         skipButton.addActionListener(this);
-        skipButton.setToolTipText("Continue to next game");
 
 
         Container hold = new Container();
@@ -115,7 +114,6 @@ public class Hangman extends JPanel implements ActionListener{
         for(int i = 0;i<buttons.length;i++,ascii++) {
 
             buttons[i] = new JButton(Character.toString((char) ascii));
-            buttons[i].setToolTipText("Select");
             buttons[i].setPreferredSize(new Dimension(30,30));
             buttons[i].setBorder(null);
             buttons[i].setFont(new Font("Arial", Font.BOLD, 10));

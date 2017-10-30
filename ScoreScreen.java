@@ -3,7 +3,7 @@
  *  author: Team FTP
  *  class: CS 245 - Programming Graphical User Interfaces
  *
- * assignment: Swing Project v1.2
+ * assignment: Swing Project v1.1
  * date last modified: 10/19/17
  *
  *  purpose: This class displays the score screen after the game of Hangman
@@ -32,7 +32,6 @@ public class ScoreScreen extends JPanel implements ActionListener
         {
             backButton = new JButton("End");
             backButton.addActionListener(this);
-            backButton.setToolTipText("Main Menu");
             //Create a new container
             Container container = new Container();
 
@@ -55,7 +54,6 @@ public class ScoreScreen extends JPanel implements ActionListener
         else {
             JTextField newName = new JTextField(10);
             newName.addActionListener(this);
-            newName.setToolTipText("Press Enter to submit new score");
             Container container = new Container();
             container.setLayout(new BoxLayout(container, BoxLayout.PAGE_AXIS));
             container.add(Box.createRigidArea(new Dimension(0, 50)));
