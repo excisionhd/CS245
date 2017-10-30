@@ -1,17 +1,16 @@
 package swingv1.pkg0;
 
-/***************************************************************
- * file: Sudoku.java
- * author: Team FTP
- * class: CS 245 - Programming Graphical User Interfaces
+/**
+ * *************************************************************
+ * file: Sudoku.java author: Team FTP class: CS 245 - Programming Graphical User
+ * Interfaces
  *
- * assignment: Swing Project v1.2
- * date last modified: 10/19/17
+ * assignment: Swing Project v1.2 date last modified: 10/19/17
  *
  * purpose: This class is the Sudoku game panel
  *
- ****************************************************************/
-
+ ***************************************************************
+ */
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,6 +23,7 @@ import javax.swing.text.NumberFormatter;
 
 public class Sudoku extends JPanel implements ActionListener
 {
+
     private Game game;
     private int score;
     private final int SUDOKU_WIDTH = 9;
@@ -31,7 +31,7 @@ public class Sudoku extends JPanel implements ActionListener
     private JTextField[][] numbers;
     private JButton submit;
     private JButton quit;
-    
+
     private JTextField[][] grid = new JTextField[SUDOKU_WIDTH][SUDOKU_HEIGHT];
 
     public Sudoku(Game game, int score)
@@ -41,16 +41,16 @@ public class Sudoku extends JPanel implements ActionListener
         numbers = new JTextField[SUDOKU_WIDTH][SUDOKU_HEIGHT];
         JButton submit = new JButton("Submit");
         JButton quit = new JButton("Quit");
-        
+
         JPanel headPanel = new JPanel(new GridLayout(3, 3));
         headPanel.setBorder(BorderFactory.createEmptyBorder(3, 3, 3, 3));
         headPanel.setBackground(Color.BLACK);
-        
+
         JPanel[][] panel = new JPanel[3][3];
-        
-        for(int i = 0; i < panel.length;i++)
+
+        for (int i = 0; i < panel.length; i++)
         {
-            for(int j = 0; j < panel[i].length; j++)
+            for (int j = 0; j < panel[i].length; j++)
             {
                 panel[i][j] = new JPanel(new GridLayout(3, 3, 1, 1));
                 panel[i][j].setBackground(Color.BLACK);
@@ -58,23 +58,27 @@ public class Sudoku extends JPanel implements ActionListener
                 headPanel.add(panel[i][j]);
             }
         }
-        
-        for(int i = 0; i < grid.length; i++)
+
+        for (int i = 0; i < grid.length; i++)
         {
-            for(int j = 0; j < grid[i].length; j++)
+            for (int j = 0; j < grid[i].length; j++)
             {
                 JTextField currentPanel = new JTextField(2);
                 currentPanel.setHorizontalAlignment(JTextField.CENTER);
                 currentPanel.setFont(currentPanel.getFont().deriveFont(Font.BOLD, 32.0f));
+
+                grid[i][j] = currentPanel;
+
+                int rowPos = i / 3;
+                int colPos = i / 3;
+
+                panel[rowPos][colPos].add(grid[i][j]);
             }
         }
-        for (int i = 0; i < SUDOKU_HEIGHT; i++)
-        {
-            for (int j = 0; j < SUDOKU_WIDTH; j++)
-            {
-                numbers[i][j].addActionListener(this);
-            }
-        }
+
+        setLayout(new BorderLayout());
+        add(headPanel, BorderLayout.CENTER);
+
         submit.addActionListener(this);
         quit.addActionListener(this);
         submit.setToolTipText("Check if answers are correct");
@@ -97,12 +101,12 @@ public class Sudoku extends JPanel implements ActionListener
             t = (JTextField) o;
         }
 
-        if (t!=null)
+        if (t != null)
         {
 
         }
 
-        if(b!=null)
+        if (b != null)
         {
 
         }
