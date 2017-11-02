@@ -40,7 +40,7 @@ class MyPanel extends JPanel {
         Font f2 = new Font("Impact", Font.BOLD, 20);
         Graphics2D g2 = (Graphics2D)g;
         g2.setFont(f);
-        g2.setColor(Color.BLACK);
+        g2.setColor(Color.MAGENTA);
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
         g2.drawString("CS245 Project",this.getWidth()/4,130); //draws title on top with team on bottom
         g2.setFont(f2);
